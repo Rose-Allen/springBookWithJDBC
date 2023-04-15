@@ -10,6 +10,12 @@ public class Person {
         this.birthday = birthday;
     }
 
+    public Person(int id, String fullname, int birthday) {
+        this.id = id;
+        this.fullname = fullname;
+        this.birthday = birthday;
+    }
+
     public int getId() {
         return id;
     }
