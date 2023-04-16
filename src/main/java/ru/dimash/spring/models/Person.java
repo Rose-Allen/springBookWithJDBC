@@ -5,6 +5,10 @@ public class Person {
     private String fullname;
     private int birthday;
 
+    public Person(){
+
+    }
+
     public Person(String fullname, int birthday) {
         this.fullname = fullname;
         this.birthday = birthday;
