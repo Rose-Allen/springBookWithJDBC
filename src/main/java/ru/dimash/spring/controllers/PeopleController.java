@@ -4,9 +4,12 @@ package ru.dimash.spring.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.dimash.spring.dao.PersonDAO;
 import ru.dimash.spring.models.Person;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
@@ -32,13 +35,16 @@ public class PeopleController {
     }
 
     @GetMapping("/new")
-    public String newPerson(Model model){
+    public String newPerson(Model model ){
         model.addAttribute("person", new Person());
         return "people/create";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") Person person){
+    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "people/create";
+        }
         personDAO.save(person);
         return "redirect:/people";
     }
@@ -51,7 +57,10 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@PathVariable("id") int id, @ModelAttribute("person") Person person){
+    public String update(@PathVariable("id") int id, @ModelAttribute("person")  @Valid Person person, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "people/edit";
+        }
         personDAO.update(id, person);
         return "redirect:/people";
     }
