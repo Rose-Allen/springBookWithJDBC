@@ -30,7 +30,7 @@ public class PersonDAO {
     }
 
     public void save(Person person){
-        jdbcTemplate.update("INSERT INTO Person VALUES (3,?,?)", person.getFullname(), person.getBirthday());
+        jdbcTemplate.update("INSERT INTO Person(fullname,birthday) VALUES (?,?)", person.getFullname(), person.getBirthday());
 
     }
 
