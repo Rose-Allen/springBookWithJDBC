@@ -30,14 +30,16 @@ public class SpringDispatcher extends AbstractAnnotationConfigDispatcherServletI
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
         super.onStartup(aServletContext);
-        registerHiddenFieldFilter(aServletContext);
         registerCharacterEncodingFilter(aServletContext);
+        registerHiddenFieldFilter(aServletContext);
     }
+
 
     private void registerHiddenFieldFilter(ServletContext aContext) {
         aContext.addFilter("hiddenHttpMethodFilter",
                 new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
     }
+
 
     private void registerCharacterEncodingFilter(ServletContext aContext) {
         EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);

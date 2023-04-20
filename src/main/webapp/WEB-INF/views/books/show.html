@@ -8,8 +8,8 @@
 <p th:text="${book.getTitle()}"></p>
 <p th:text="${book.getAuthor()}"></p>
 <p th:text="${book.getYear()}"></p>
-<a th:href="@{/books/{id}/edit(id=${book.getId()})}">Edit</a>
+<a th:href="@{/books/{id}/edit(id=${book.getId()})}">Редактировать книгу</a>
 <br>
-<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}"><input type="submit" value="Delete"></form>
+<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}"><input type="submit" value="Удалить книгу"></form>
 </body>
 </html>
